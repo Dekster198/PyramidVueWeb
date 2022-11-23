@@ -1,0 +1,56 @@
+body {
+    background: rgb(233,235,252);
+    background: radial-gradient(circle, rgba(233,235,252,1) 0%, rgba(205,215,255,1) 100%);
+}
+
+table {width: 100%; border-collapse: separate; border-spacing: 4px;}
+table thead tr {color: black; font-weight: bold;}
+table thead tr td {border-radius: 4px 4px 0 0; background: #2e82c3}
+table tbody tr td {border: 1px solid #2e82c3; border-radius: 4px; background: #cbdfef;}
+table tbody tr td:hover {background: #a2c3dd; transition-duration: 0.2s;}
+  
+  *,
+*::after,
+*::before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+#mainmenu {
+    background: #444;
+    position: relative;
+    overflow: hidden;
+    height: 40px;
+    margin: 30px 0
+}
+#mainmenu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    left: 50%;
+    float: left;
+    font: 14px Arial, Helvetica, sans-serif;
+    height: 40px
+}
+#mainmenu ul li {
+    position: relative;
+    left: -50%;
+    float: left;
+    margin: 0 10px;
+    height: 40px
+}
+#mainmenu ul li a {
+    color: #fff;
+    display: block;
+    text-decoration: none;
+    padding: 0 15px;
+    line-height: 40px;
+}
+#mainmenu ul li a:hover {
+    background-color: #666;
+}
