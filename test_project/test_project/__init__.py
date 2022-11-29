@@ -1,6 +1,4 @@
 from pyramid.config import Configurator
-from .models import Doctor, Patient, Reception
-from .models import sess
 
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
