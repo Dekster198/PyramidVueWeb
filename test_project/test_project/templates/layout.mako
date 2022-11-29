@@ -62,13 +62,6 @@ Vue.createApp({
 
   },
   computed: {
-        aStyle(){
-            return {
-                'color': 'black',
-                'font-size': '30px',
-                'margin': '0 20px'
-            }
-        },
         bStyle(){
             return {
                 'color': 'rgb(5, 0, 51)',

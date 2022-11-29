@@ -6,7 +6,6 @@ from sqlalchemy.ext.declarative import declarative_base
 engine = create_engine("postgresql+psycopg2://postgres:7895123@localhost/db_web")
 postgresengine = create_engine("postgresql+psycopg2://postgres:7895123@localhost/db_web")
 engine.connect()
-#print(engine)
 Base = declarative_base(bind=engine)
 session = sessionmaker(bind=engine)
 sess = session()
