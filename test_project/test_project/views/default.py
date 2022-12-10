@@ -1,9 +1,9 @@
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
 import sys
-sys.path.insert(1, 'C:\\Users\\olegf\\Desktop\\test\\test_project\\test_project')
-from models import sess
-from models import Doctor, Patient, Reception
+# sys.path.insert(1, 'test_project:models')
+from ..models import sess
+from ..models import Doctor, Patient, Reception
 
 @view_config(route_name='home', renderer='test_project:templates/mytemplate.mako')
 def my_view(request):
