@@ -35,7 +35,7 @@
 </div>
 <h1 align='center'>Зарегистрировать пациента</h1>
 <div id="form" align="center">
-<form method="post" @submit="onSubmit">
+<form method="post">
     <label>Фамилия</label><br>
     <input type="text" v-model="surname" placeholder="Введите фамилию" name="surname" v-bind:style="aStyle"/><br>
     <label>Имя</label><br>
@@ -54,22 +54,6 @@
 Vue.createApp({
   data() {
 
-  },
-  methods: {
-    async onSubmit() {
-        const res = await fetch('http://127.0.0.1:6543/add_patient_api', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                surname: this.surname,
-                name: this.name,
-                patronymic: this.patronymic,
-                date_of_birth: this.date_of_birth,
-            }),
-        })
-    }
   },
   computed: {
         aStyle(){

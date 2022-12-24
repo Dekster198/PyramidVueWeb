@@ -7,4 +7,3 @@ def includeme(config):
     config.add_route('add_reception', 'add_reception')
     config.add_route('receptions', 'receptions')
     config.add_route('add_doctor_api', 'add_doctor_api')
-    config.add_route('add_patient_api', 'add_patient_api')

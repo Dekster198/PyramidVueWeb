@@ -95,23 +95,3 @@ def add_doctor_api(request):
     sess.commit()
 
     return {}
-
-@view_config(route_name='add_patient_api', renderer='json', request_method='POST')
-def add_patient_api(request):
-    data = request.json_body
-    surname = data.get('surname')
-    name = data.get('name')
-    patronymic = data.get('patronymic')
-    date_of_birth = data.get('date_of_birth')
-
-    pat = Patient(
-        surname=surname,
-        name=name,
-        patronymic=patronymic,
-        date_of_birth=date_of_birth
-    )
-
-    sess.add(pat)
-    sess.commit()
-
-    return {}
