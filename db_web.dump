@@ -1,0 +1,274 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 15.0
+-- Dumped by pg_dump version 15.0
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: doctor; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.doctor (
+    id integer NOT NULL,
+    surname character varying NOT NULL,
+    name character varying NOT NULL,
+    patronymic character varying,
+    specialization character varying NOT NULL,
+    experience integer NOT NULL,
+    price integer NOT NULL
+);
+
+
+ALTER TABLE public.doctor OWNER TO postgres;
+
+--
+-- Name: doctor_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public.doctor ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.doctor_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Name: patient; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.patient (
+    id integer NOT NULL,
+    surname character varying NOT NULL,
+    name character varying NOT NULL,
+    patronymic character varying,
+    date_of_birth date NOT NULL
+);
+
+
+ALTER TABLE public.patient OWNER TO postgres;
+
+--
+-- Name: patient_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public.patient ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.patient_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Name: reception; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.reception (
+    id integer NOT NULL,
+    date date NOT NULL,
+    doctor integer NOT NULL,
+    patient integer NOT NULL,
+    price integer NOT NULL
+);
+
+
+ALTER TABLE public.reception OWNER TO postgres;
+
+--
+-- Name: reception_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public.reception ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.reception_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Data for Name: doctor; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.doctor (id, surname, name, patronymic, specialization, experience, price) FROM stdin;
+2	Демьяченко	Василий	Петрович	Терапевт	5	1200
+6	Асдахов	Константин	Евгеньевич	Дерматолог	15	2000
+14	Коденко	Пётр	Денисович	Травматолог	12	1600
+15	Эзманьков	Антон	Александрович	Отолоринголог	3	780
+16	Солник	Ярослав	Эдуардович	Нарколог	12	1000
+17	Альверов	Сильвестр	Михайлович	Массажист	20	1400
+19	Ровцев	Роман	Ильич	Хирург	18	1450
+22	1	1	1	1	1	1
+23	2345	2345	2345	2345	2345	2345
+\.
+
+
+--
+-- Data for Name: patient; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.patient (id, surname, name, patronymic, date_of_birth) FROM stdin;
+1	Кошмяков	Дмитрий	Владиславович	1998-09-20
+2	Корнев	Алексей	Дмитриевич	1995-07-12
+4	Аннисимов	Вячеслав	Владимирович	2002-04-10
+5	Кольнов	Вениамин	Григорьевич	2003-03-31
+9	1234	1234	1234	0012-12-12
+10	1	1	1	1111-11-11
+11	345	2345	6234	1111-11-11
+\.
+
+
+--
+-- Data for Name: reception; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.reception (id, date, doctor, patient, price) FROM stdin;
+1	2022-08-19	2	1	1200
+3	2022-08-05	2	2	1200
+4	2022-12-22	2	4	1450
+9	1111-11-11	22	10	1111
+10	2023-01-01	16	2	1111
+11	2023-01-10	6	5	1234
+12	2222-02-22	14	9	2222
+14	1212-12-12	16	4	1212
+15	1212-12-12	16	4	1212
+18	1111-11-11	22	1	1111
+19	1111-11-11	22	1	1111
+24	1111-11-11	22	1	1111
+25	1241-12-12	6	2	1111
+26	275760-02-14	14	4	12521
+27	275760-02-14	14	4	12521
+28	1221-02-11	6	4	41142
+29	2222-12-12	15	5	1231
+32	5555-05-05	14	11	1245
+34	21124-04-12	6	4	1212
+35	2023-01-05	16	5	1212
+\.
+
+
+--
+-- Name: doctor_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.doctor_id_seq', 23, true);
+
+
+--
+-- Name: patient_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.patient_id_seq', 11, true);
+
+
+--
+-- Name: reception_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.reception_id_seq', 35, true);
+
+
+--
+-- Name: doctor doctor_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.doctor
+    ADD CONSTRAINT doctor_pk PRIMARY KEY (id);
+
+
+--
+-- Name: doctor doctor_un; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.doctor
+    ADD CONSTRAINT doctor_un UNIQUE (id);
+
+
+--
+-- Name: patient patient_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.patient
+    ADD CONSTRAINT patient_pk PRIMARY KEY (id);
+
+
+--
+-- Name: patient patient_un; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.patient
+    ADD CONSTRAINT patient_un UNIQUE (id);
+
+
+--
+-- Name: reception reception_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.reception
+    ADD CONSTRAINT reception_pk PRIMARY KEY (id);
+
+
+--
+-- Name: reception reception_un; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.reception
+    ADD CONSTRAINT reception_un UNIQUE (id);
+
+
+--
+-- Name: fki_d; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX fki_d ON public.reception USING btree (doctor);
+
+
+--
+-- Name: fki_reception_patient_fk; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX fki_reception_patient_fk ON public.reception USING btree (patient);
+
+
+--
+-- Name: reception reception_doctor_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.reception
+    ADD CONSTRAINT reception_doctor_fk FOREIGN KEY (doctor) REFERENCES public.doctor(id);
+
+
+--
+-- Name: reception reception_patient_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.reception
+    ADD CONSTRAINT reception_patient_fk FOREIGN KEY (patient) REFERENCES public.patient(id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
